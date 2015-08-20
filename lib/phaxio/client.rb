@@ -150,6 +150,29 @@ module Phaxio
       send_post("/numberList", options)
     end
 
+    # Public: Displays a list of area codes available for purchasing Phaxio
+    #         numbers. This operation requires no authentication and can be
+    #         used without passing an API key.
+    #
+    # options - The Hash options used to refne th selection (default: {}):
+    #           is_toll_free - A Boolean, will only return toll free area codes
+    #                          (optional).
+    #           state        - A two character String state or province abbreviation
+    #                          (e.g. IL or YT). Will only return area codes
+    #                          available for this state.
+    #                          (optional).
+    #
+    # Examples
+    #
+    #   Phaxio.area_codes # list all area codes you can provisions a number from
+    #
+    #   Phaxio.area_codes(state: 'TX') # list only area codes in Texas
+    #
+    # Returns a HTTParty::Reponse object containing a success bool, a message,
+    # and the data attributes containing the area code details.
+    def area_codes(options = {})
+      send_post("/areaCodes", options)
+    end
     # Public: Get an image thumbnail or PDF file for a fax. For images to work
     #         file storage must not be disabled with Phaxio.
     #
